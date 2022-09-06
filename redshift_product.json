@@ -1,0 +1,27 @@
+{
+  "name": "redshift-product",
+  "config": {
+    "connector.class": "io.confluent.connect.aws.redshift.RedshiftSinkConnector",
+    "tasks.max": "1",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "topics": "trusted_product",
+    "aws.redshift.domain": "redshift-hackathon.ckiaxj9adhnp.ap-south-1.redshift.amazonaws.com",
+    "aws.redshift.port": "5439",
+    "aws.redshift.database": "dev",
+    "aws.redshift.user": "awsuser",
+    "aws.redshift.password": "*****",
+    "insert.mode": "insert",
+    "pk.mode": "none",
+	"confluent.license": "",
+    "auto.create": "true",
+    "confluent.topic.bootstrap.servers": "broker:29092",
+    "confluent.topic.replication.factor": "1",
+    "key.ignore": "true",
+    "schema.ignore": "true",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+    "schema.registry.schema.version": "1",
+    "value.converter.schemas.enable": "true",
+    "key.converter.schema.registry.url": "http://schema-registry:8081"
+  }
+}

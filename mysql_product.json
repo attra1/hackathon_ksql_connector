@@ -1,0 +1,16 @@
+{
+  "name": "mysql_product",
+  "config": {
+    "name": "mysql_product",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "tasks.max": "1",
+    "connection.url": "jdbc:mysql://ec2-3-108-10-60.ap-south-1.compute.amazonaws.com:6603/hackathon",
+    "connection.user": "root",
+    "connection.password": "*****",
+    "connection.attempts": "1",
+    "table.whitelist": "product",
+    "mode": "incrementing",
+    "incrementing.column.name": "id",
+    "topic.prefix": "mysql_"
+  }
+}

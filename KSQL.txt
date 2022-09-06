@@ -1,0 +1,33 @@
+*******************Create raw stream****************
+  CREATE STREAM stream_mysql_product (
+    id BIGINT,
+    name VARCHAR,
+    sku VARCHAR,
+	details VARCHAR
+  ) WITH (
+    KAFKA_TOPIC = 'mysql_product',
+    VALUE_FORMAT = 'AVRO', PARTITIONS = '1', REPLICAS = '1' );
+	
+*******************Create trusted stream****************
+ CREATE STREAM stream_trusted_product (
+    id BIGINT,
+    name VARCHAR,
+    sku VARCHAR,
+	details VARCHAR,
+	country VARCHAR,
+	dq_check_name VARCHAR
+  ) WITH (
+    KAFKA_TOPIC = 'trusted_product',
+    VALUE_FORMAT = 'AVRO', PARTITIONS = '1', REPLICAS = '1' );
+	
+*******************Apply ETL Rules****************
+
+INSERT INTO stream_trusted_product 
+SELECT *, 'USA' as country, 
+	CASE WHEN name = 'X' THEN 'N'
+		ELSE 'Y' 
+	  END as dq_check_name 
+FROM stream_mysql_product;
+
+       
+	
